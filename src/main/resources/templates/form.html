@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Formulaire Contact</title>
+</head>
+<body>
+<h1 th:text="${contact.id == null ? 'Ajouter' : 'Modifier'} + ' un contact'"></h1>
+
+<form th:action="@{/contacts/save}" th:object="${contact}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <label>Prénom : <input type="text" th:field="*{firstName}" /></label><br/>
+  <label>Nom : <input type="text" th:field="*{lastName}" /></label><br/>
+  <label>Email : <input type="email" th:field="*{email}" /></label><br/>
+  <button type="submit">Enregistrer</button>
+</form>
+
+<a href="/contacts">Retour</a>
+</body>
+</html>

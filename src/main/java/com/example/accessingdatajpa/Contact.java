@@ -15,7 +15,7 @@ public class Contact {
     private String lastName;
     private String email;
 
-    protected Contact() {}
+    public Contact() {}
 
     public Contact(String firstName, String lastName, String email) {
         this.firstName = firstName;
