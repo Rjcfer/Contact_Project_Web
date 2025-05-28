@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -18,14 +20,21 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests((requests) -> requests
-						.requestMatchers("/", "/home").permitAll()
+						.requestMatchers("/", "/user/login", "/user/new", "/create-account", "/css/**", "/js/**").permitAll()
 						.anyRequest().authenticated()
 				)
 				.formLogin((form) -> form
-						.loginPage("/login")
+						.loginPage("/user/login")
+						.loginProcessingUrl("/user/login")
+						.defaultSuccessUrl("/welcome", true)
+						.failureUrl("/user/login?error")
 						.permitAll()
 				)
-				.logout((logout) -> logout.permitAll());
+				.logout((logout) -> logout
+						.logoutUrl("/logout")
+						.logoutSuccessUrl("/user/login?logout")
+						.permitAll()
+				);
 
 		return http.build();
 	}
