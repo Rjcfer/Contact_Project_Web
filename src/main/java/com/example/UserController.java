@@ -44,29 +44,4 @@ public class UserController {
 		return "login"; // Retourne la page login.html
 	}
 
-	@PostMapping("/login")
-	public String loginUser(@ModelAttribute UserAccount user,
-							Model model) {
-	log.warn("loginUser", user.getUsername());
-		List<UserAccount> users = userRepository.findByUsername(user.getUsername());
-		log.warn("User.size()", users.size());
-		log.warn("test",users.get(0).getPassword());
-
-		if(users.size() != 1) {
-			model.addAttribute("error", "Nom d'utilisateur invalide.");
-			return "login";
-		}
-
-		log.warn("Connexion de l'utilisateur : {}", user);
-		log.warn("test",users.get(0).getPassword());
-		if (!passwordEncoder.matches(user.getPassword(), users.get(0).getPassword())) {
-			model.addAttribute("error", "Mot de passe incorrect.");
-			return "login";
-		}
-
-		// Connexion réussie
-		model.addAttribute("message", "Bienvenue " + users.get(0).getUsername() + " !");
-		return "/contacts";
-	}
-
 }

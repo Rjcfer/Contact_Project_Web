@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CreateAccountController {
 	@RequestMapping
 	public String createAccount() {
-		return "create-account"; // This should return the name of the view for creating an account
+		return "create-account";
 	}
 
 }

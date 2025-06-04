@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Formulaire Creation Compte</title>
-</head>
-<body>
-<H1>Formulaire Creation Compte</H1>
-<form th:action="@{/user/new}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Creation de compte"/></div>
-</form>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 
-</body>
+<head>
+    <title layout:fragment="title">Formulaire Création de Compte</title>
+</head>
+
+<div layout:fragment="content">
+    <h1>Formulaire Création de Compte</h1>
+    <form th:action="@{/user/new}" method="post">
+        <div><label>Nom d'utilisateur : <input type="text" name="username"/> </label></div>
+        <div><label>Mot de passe : <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Créer le compte"/></div>
+    </form>
+</div>
+
 </html>
