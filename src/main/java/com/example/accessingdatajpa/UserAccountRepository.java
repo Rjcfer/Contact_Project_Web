@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface UserAccountRepository extends CrudRepository<UserAccount, Long>{
 
-		List<UserAccount> findByUsername(String lastName);
-
+	UserAccount findByUsername(String username);
 
 	UserAccount findById(long id);
-
 }
