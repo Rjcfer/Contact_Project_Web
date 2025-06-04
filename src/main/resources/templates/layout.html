@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+    <meta charset="UTF-8">
+    <title layout:fragment="title">Page de contacts</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+
+
+<header style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit">Se déconnecter</button>
+        </form>
+    </div>
+
+    <h1>Application contacts</h1>
+</header>
+
+
+<main layout:fragment="content">
+</main>
+
+<footer><p>© 2025</p></footer>
+
+</html>
