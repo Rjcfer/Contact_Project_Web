@@ -15,7 +15,7 @@ public class Address {
     private String city;
     private String region;
 
-    @ManyToMany(mappedBy = "adresses")
+    @ManyToMany(mappedBy = "addresses")
     private Collection<Contact> contacts;
 
     public Address () {}
