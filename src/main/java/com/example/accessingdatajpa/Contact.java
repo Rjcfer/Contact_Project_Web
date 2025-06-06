@@ -1,9 +1,8 @@
 package com.example.accessingdatajpa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Collection;
 
 @Entity
 public class Contact {
@@ -14,6 +13,18 @@ public class Contact {
     private String firstName;
     private String lastName;
     private String email;
+
+    @ManyToMany
+    @JoinTable(
+            name = "contact_address",
+            joinColumns = @JoinColumn(name = "contact_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id")
+    )
+    private Collection<Address> addresses;
+
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<EmailAddress> emailAddresses;
+
 
     public Contact() {}
 
